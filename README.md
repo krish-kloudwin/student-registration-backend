@@ -131,12 +131,12 @@ Uvicorn running on http://127.0.0.1:8000
 
 Visit: **http://localhost:8000/docs**
 
-You should see two endpoints under "Students": `POST /api/students` and
-`GET /api/students`.
+You should see two endpoints under "Students": `POST /api/v1/students` and
+`GET /api/v1/students`.
 
 ## 10. API Endpoints
 
-### `POST /api/students` — Register a student
+### `POST /api/v1/students` — Register a student
 
 **Request body:**
 ```json
@@ -181,7 +181,7 @@ name, bad pincode, invalid course/gender, age under 5, etc.):
 { "detail": "A student with this email is already registered" }
 ```
 
-### `GET /api/students` — List all students
+### `GET /api/v1/students` — List all students
 
 **Success response — `200 OK`:**
 ```json
@@ -256,5 +256,5 @@ returning `409 Conflict` with a clean message (never a raw SQL error).
 
 ## 14. Bonus / optional (not required for the core assignment)
 
-Not implemented in this version. Could be added later: `PUT /api/students/{id}`,
-`DELETE /api/students/{id}`, `GET /api/students?search=...`, pagination, Docker Compose.
+Not implemented in this version. Could be added later: `PUT /api/v1/students/{id}`,
+`DELETE /api/v1/students/{id}`, `GET /api/v1/students?search=...`, pagination, Docker Compose.

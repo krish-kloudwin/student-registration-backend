@@ -44,3 +44,18 @@ CREATE TABLE IF NOT EXISTS students (
 -- Helpful indexes for lookups used during duplicate checks.
 CREATE INDEX IF NOT EXISTS idx_students_email  ON students (email);
 CREATE INDEX IF NOT EXISTS idx_students_mobile ON students (mobile);
+
+-- =============================================================================
+-- Admins table - for the JWT-protected /api/v1/students GET endpoint.
+-- There is no public signup; rows here are created only via the
+-- `python -m app.create_admin` CLI script.
+-- =============================================================================
+
+CREATE TABLE IF NOT EXISTS admins (
+    id              SERIAL PRIMARY KEY,
+    username        VARCHAR(100)  NOT NULL UNIQUE,
+    password_hash   VARCHAR(255)  NOT NULL,
+    created_at      TIMESTAMPTZ   NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_admins_username ON admins (username);

@@ -132,3 +132,38 @@ class ErrorResponse(BaseModel):
     success: bool = False
     message: str
     detail: Optional[str] = None
+
+
+# --- Auth schemas ------------------------------------------------------------
+
+
+class AdminLogin(BaseModel):
+    """Request body for POST /api/v1/auth/login."""
+
+    username: str = Field(..., min_length=3, max_length=100)
+    password: str = Field(..., min_length=8, max_length=128)
+
+
+class AdminLoginResponse(BaseModel):
+    """Response body after a successful login.
+
+    The token is set as an httpOnly cookie (used automatically by the
+    Next.js frontend) AND returned here in the body as a Bearer token -
+    copy this value into Swagger's "Authorize" button to test protected
+    routes directly from /docs."""
+
+    success: bool
+    message: str
+    username: str
+    access_token: str
+    token_type: str = "bearer"
+
+
+class AdminMeResponse(BaseModel):
+    """Response body for GET /api/v1/auth/me - who is currently logged in."""
+
+    id: int
+    username: str
+    created_at: datetime
+
+    model_config = {"from_attributes": True}

@@ -10,14 +10,17 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    # Default value below is only used if DATABASE_URL is not set at all.
-    # In real usage this should always come from the .env file.
     database_url: str = (
         "postgresql://postgres:postgres@localhost:5432/student_registration"
     )
 
-    # Comma-separated origins allowed to call this API.
     cors_origins: str = "http://localhost:3000"
+
+    # JWT / admin auth settings
+    jwt_secret_key: str = "CHANGE_ME_dev_only_secret_key"
+    jwt_algorithm: str = "HS256"
+    jwt_expire_minutes: int = 60
+    auth_cookie_name: str = "access_token"
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
