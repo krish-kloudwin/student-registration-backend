@@ -83,5 +83,5 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${INFRA_DISPATCH_TOKEN}" \
             -H "X-GitHub-Api-Version: 2026-03-10" \
-            https://api.github.com/repos/krish-src/student-registration-infra/dispatches \
+            https://api.github.com/repos/krish-kloudwin/student-registration-infra/dispatches \
             -d "{\"event_type\":\"backend-updated\",\"client_payload\":{\"backend_sha\":\"${GITHUB_SHA}\"}}"
